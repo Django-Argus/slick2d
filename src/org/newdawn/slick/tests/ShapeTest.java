@@ -49,6 +49,10 @@ public class ShapeTest extends BasicGame {
         super("Geom Test");
     }
 	
+	/**
+	 * @param x
+	 * @param y
+	 */
 	public void createPoly(float x, float y) {
 		int size = 20;
 		int change = 10;

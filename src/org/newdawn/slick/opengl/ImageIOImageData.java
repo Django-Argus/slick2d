@@ -118,6 +118,13 @@ public class ImageIOImageData implements LoadableImageData {
 		return imageToByteBuffer(bufferedImage, flipped, forceAlpha, transparent);
 	}
 	
+	/**
+	 * @param image
+	 * @param flipped
+	 * @param forceAlpha
+	 * @param transparent
+	 * @return ByteBuffer
+	 */
 	public ByteBuffer imageToByteBuffer(BufferedImage image, boolean flipped, boolean forceAlpha, int[] transparent) {
 	    ByteBuffer imageBuffer = null; 
         WritableRaster raster;

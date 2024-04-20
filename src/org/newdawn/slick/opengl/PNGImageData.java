@@ -137,21 +137,6 @@ public class PNGImageData implements LoadableImageData {
 			scratch = temp;
 		}
 			
-		if (transparent != null) {
-	        for (int i=0;i<texWidth*texHeight*4;i+=4) {
-	        	boolean match = true;
-	        	for (int c=0;c<3;c++) {
-	        		if (toInt(scratch.get(i+c)) != transparent[c]) {
-	        			match = false;
-	        		}
-	        	}
-	  
-	        	if (match) {
-	        		scratch.put(i+3, (byte) 0);
-	           	}
-	        }
-	    }
-		
 		scratch.position(0);
 		
 		return scratch;

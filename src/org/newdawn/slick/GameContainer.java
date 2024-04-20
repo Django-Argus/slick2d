@@ -103,6 +103,9 @@ public abstract class GameContainer implements GUIContext {
 		Log.checkVerboseLogSetting();
 	}
 
+	/**
+	 * 
+	 */
 	public static void enableStencil() {
 		stencil = true;
 	}

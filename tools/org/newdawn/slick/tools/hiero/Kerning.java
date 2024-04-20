@@ -20,6 +20,7 @@ import java.util.Map.Entry;
  * 
  * @author Nathan Sweet <misc@n4te.com>
  */
+@SuppressWarnings("javadoc")
 class Kerning {
 	private Map values = Collections.EMPTY_MAP;
 	private int size = -1;

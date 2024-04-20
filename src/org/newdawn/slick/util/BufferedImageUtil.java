@@ -52,6 +52,7 @@ public class BufferedImageUtil {
 	 *            The location of the resource to load
 	 * @param resourceImage
 	 *            The BufferedImage we are converting
+	 * @param filter The filter
 	 * @return The loaded texture
 	 * @throws IOException
 	 *             Indicates a failure to access the resource

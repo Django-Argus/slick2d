@@ -94,6 +94,7 @@ import org.newdawn.slick.util.Log;
  * A tool to visualize settings for {@link UnicodeFont} and to export BMFont files for use with {@link AngelCodeFont}.
  * @author Nathan Sweet <misc@n4te.com>
  */
+@SuppressWarnings("javadoc")
 public class Hiero extends JFrame {
 	static final String NEHE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ\n" //
 		+ "abcdefghijklmnopqrstuvwxyz\n1234567890\n" //

@@ -510,6 +510,15 @@ public interface SGL {
 
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
+	 * @param target 
+	 * @param i 
+	 * @param dstPixelFormat 
+	 * @param get2Fold 
+	 * @param get2Fold2 
+	 * @param j 
+	 * @param srcPixelFormat 
+	 * @param glUnsignedByte 
+	 * @param textureBuffer 
 	 */
 	public void glTexImage2D(int target, int i, int dstPixelFormat,
 			int get2Fold, int get2Fold2, int j, int srcPixelFormat,
@@ -517,6 +526,15 @@ public interface SGL {
 
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
+	 * @param glTexture2d 
+	 * @param i 
+	 * @param pageX 
+	 * @param pageY 
+	 * @param width 
+	 * @param height 
+	 * @param glBgra 
+	 * @param glUnsignedByte 
+	 * @param scratchByteBuffer 
 	 */
 	public void glTexSubImage2D(int glTexture2d, int i, int pageX, int pageY,
 			int width, int height, int glBgra, int glUnsignedByte,
@@ -529,7 +547,15 @@ public interface SGL {
 	 */
 	public boolean canTextureMirrorClamp();
 
+	/**
+	 * @return Boolean
+	 */
 	public boolean canSecondaryColor();
 
+	/**
+	 * @param b
+	 * @param c
+	 * @param d
+	 */
 	public void glSecondaryColor3ubEXT(byte b, byte c, byte d);
 }

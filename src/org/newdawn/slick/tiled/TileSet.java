@@ -7,6 +7,7 @@ import java.util.Properties;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -40,13 +41,16 @@ public class TileSet {
 	/** The image containing the tiles */
 	public SpriteSheet tiles;
 	
+	/** The animations for each animated tiles */
+	private HashMap<Integer, Animation> animatedTiles = new HashMap<Integer, Animation>();
+	
 	/** The number of tiles across the sprite sheet */
 	public int tilesAcross;
 	/** The number of tiles down the sprite sheet */
 	public int tilesDown;
 	
 	/** The properties for each tile */
-	private HashMap props = new HashMap();
+	private HashMap<Integer, Properties> props = new HashMap<Integer, Properties>();
 	/** The padding of the tiles */
 	protected int tileSpacing = 0;
 	/** The margin of the tileset */
@@ -65,7 +69,7 @@ public class TileSet {
 		name = element.getAttribute("name");
 		firstGID = Integer.parseInt(element.getAttribute("firstgid"));
 		String source = element.getAttribute("source");
-		
+
 		if ((source != null) && (!source.equals(""))) {
 			try {
 				InputStream in = ResourceLoader.getResourceAsStream(map.getTilesLocation() + "/" + source);
@@ -100,7 +104,7 @@ public class TileSet {
 		NodeList list = element.getElementsByTagName("image");
 		Element imageNode = (Element) list.item(0);
 		String ref = imageNode.getAttribute("source");
-		
+
 		Color trans = null;
 		String t = imageNode.getAttribute("trans");
 		if ((t != null) && (t.length() > 0)) {
@@ -108,7 +112,7 @@ public class TileSet {
 			
 			trans = new Color(c);
 		}
-
+		
 		if (loadImage) {
 			Image image = new Image(map.getTilesLocation()+"/"+ref,false,Image.FILTER_NEAREST,trans);
 			setTileSetImage(image);
@@ -121,20 +125,49 @@ public class TileSet {
 			int id = Integer.parseInt(tileElement.getAttribute("id"));
 			id += firstGID;
 			Properties tileProps = new Properties();
-			
+
 			Element propsElement = (Element) tileElement.getElementsByTagName("properties").item(0);
-			NodeList properties = propsElement.getElementsByTagName("property");
-			for (int p=0;p<properties.getLength();p++) {
-				Element propElement = (Element) properties.item(p);
+			if(propsElement != null) {
+				NodeList properties = propsElement.getElementsByTagName("property");
+				for (int p=0;p<properties.getLength();p++) {
+					Element propElement = (Element) properties.item(p);
+					
+					String name = propElement.getAttribute("name");
+					String value = propElement.getAttribute("value");
+					
+					tileProps.setProperty(name, value);
+				}
 				
-				String name = propElement.getAttribute("name");
-				String value = propElement.getAttribute("value");
-				
-				tileProps.setProperty(name, value);
+				props.put(new Integer(id), tileProps);
 			}
 			
-			props.put(new Integer(id), tileProps);
+			Element animElement = (Element) tileElement.getElementsByTagName("animation").item(0);
+			if(animElement != null) {
+				tileProps.setProperty("animation", "true");
+				
+				Animation animation = new Animation();
+				
+				NodeList frameElements = animElement.getElementsByTagName("frame");
+				for(int j = 0; j < frameElements.getLength(); j++) {
+					Element elt = (Element) frameElements.item(j);
+					if(elt == null) 
+						continue;
+					
+					int animTileId = Integer.parseInt(elt.getAttribute("tileid"));
+					int duration = Integer.parseInt(elt.getAttribute("duration"));
+					
+					int x = (animTileId % tiles.getHorizontalCount()) * tileWidth;
+					int y = (animTileId / tiles.getHorizontalCount()) * tileHeight;
+
+					animation.addFrame(tiles.getSubImage(x, y, tileWidth, tileHeight), duration);
+				}
+				animatedTiles.put(new Integer(id), animation);
+				
+				props.put(new Integer(id), tileProps);
+			}
+			System.out.println(animatedTiles);
 		}
+		
 	}
 	
 	/**
@@ -194,13 +227,35 @@ public class TileSet {
 	}
 	
 	/**
+	 * @param x
+	 * @param y
+	 * @param sx
+	 * @param sy
+	 */
+	public void renderTile(int x, int y, int sx, int sy) {
+		int id = sy * tiles.getHorizontalCount() + sx + firstGID;
+
+		Properties prop = props.get(new Integer(id));
+		if(prop == null || prop.get("animation") == null) {
+			tiles.startUse();
+			tiles.renderInUse(x, y, sx, sy);
+			tiles.endUse();
+			return;
+		}
+
+		Animation anim = animatedTiles.get(new Integer(id));
+		anim.start();
+		anim.draw(x, y);
+	}
+	
+	/**
 	 * Get the properties for a specific tile in this tileset
 	 * 
 	 * @param globalID The global ID of the tile whose properties should be retrieved
 	 * @return The properties for the specified tile, or null if no properties are defined
 	 */
 	public Properties getProperties(int globalID) {
-		return (Properties) props.get(new Integer(globalID));
+		return props.get(new Integer(globalID));
 	}
 	
 	/**

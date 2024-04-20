@@ -43,10 +43,11 @@ import java.util.zip.Inflater;
  * 
  * @author Matthias Mann
  */
+@SuppressWarnings("javadoc")
 public class PNGDecoder {
     public static Format ALPHA = new Format(1, true);
     public static Format LUMINANCE = new Format(1, false);
-    public static Format LUMINANCE_ALPHA = new Format(2, true);
+	public static Format LUMINANCE_ALPHA = new Format(2, true);
     public static Format RGB = new Format(3, false);
     public static Format RGBA = new Format(4, true);
     public static Format BGRA = new Format(4, true);

@@ -28,6 +28,7 @@ public class KeyRepeatTest extends BasicGame {
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
+	@SuppressWarnings("deprecation")
 	public void init(GameContainer container) throws SlickException {
 		input = container.getInput();
 		input.enableKeyRepeat(300,100);
@@ -66,6 +67,7 @@ public class KeyRepeatTest extends BasicGame {
 	/**
 	 * @see org.newdawn.slick.BasicGame#keyPressed(int, char)
 	 */
+	@SuppressWarnings("deprecation")
 	public void keyPressed(int key, char c) {
 		count++;
 		if (key == Input.KEY_SPACE) {

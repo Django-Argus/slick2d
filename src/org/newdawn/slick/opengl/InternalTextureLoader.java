@@ -331,8 +331,8 @@ public class InternalTextureLoader {
         	texture.setTextureData(srcPixelFormat, componentCount, minFilter, magFilter, textureBuffer);
         }
         
-        GL.glTexParameteri(target, GL.GL_TEXTURE_MIN_FILTER, minFilter); 
-        GL.glTexParameteri(target, GL.GL_TEXTURE_MAG_FILTER, magFilter); 
+        GL.glTexParameteri(target, SGL.GL_TEXTURE_MIN_FILTER, minFilter); 
+        GL.glTexParameteri(target, SGL.GL_TEXTURE_MAG_FILTER, magFilter); 
         
         // produce a texture from the byte buffer
         GL.glTexImage2D(target, 
@@ -365,6 +365,7 @@ public class InternalTextureLoader {
      * 
      * @param width The width of the new texture
      * @param height The height of the new texture
+     * @param filter 
      * @return The created empty texture
      * @throws IOException Indicates a failure to create the texture on the graphics hardware
      */

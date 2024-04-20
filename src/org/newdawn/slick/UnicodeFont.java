@@ -596,6 +596,7 @@ public class UnicodeFont implements org.newdawn.slick.Font {
 	 * @param vector The vector the glyph is part of
 	 * @param index The index of the glyph within the vector
 	 * @param codePoint The code point associated with the glyph
+	 * @return Rectangle
 	 */
 	private Rectangle getGlyphBounds (GlyphVector vector, int index, int codePoint) {
 		Rectangle bounds = vector.getGlyphPixelBounds(index, GlyphPage.renderContext, 0, 0);
@@ -605,6 +606,7 @@ public class UnicodeFont implements org.newdawn.slick.Font {
 
 	/**
 	 * Returns the width of the space character.
+	 * @return Integer
 	 */
 	public int getSpaceWidth () {
 		return spaceWidth;
@@ -974,6 +976,9 @@ public class UnicodeFont implements org.newdawn.slick.Font {
 		/** Application data stored in the list */
 		public Object userData;
 
+		/**
+		 * 
+		 */
 		DisplayList () {
 		}
 	}

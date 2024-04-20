@@ -33,6 +33,7 @@ import org.newdawn.slick.util.ResourceLoader;
 /**
  * @author Nathan Sweet <misc@n4te.com>
  */
+@SuppressWarnings("javadoc")
 public class BMFontUtil {
 	private final UnicodeFont unicodeFont;
 

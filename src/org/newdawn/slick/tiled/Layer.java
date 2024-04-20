@@ -192,7 +192,6 @@ public class Layer {
 				if (data[sx+tx][sy+ty][0] == tileset) {
 					if (set == null) {
 						set = map.getTileSet(tileset);
-						set.tiles.startUse();
 					}
 					
 					int sheetX = set.getTileX(data[sx+tx][sy+ty][1]);
@@ -200,22 +199,17 @@ public class Layer {
 					
 					int tileOffsetY = set.tileHeight - mapTileHeight;
 					
-//						set.tiles.renderInUse(x+(tx*set.tileWidth), y+(ty*set.tileHeight), sheetX, sheetY);
-					set.tiles.renderInUse(x+(tx*mapTileWidth), y+(ty*mapTileHeight)-tileOffsetY, sheetX, sheetY);
+					set.renderTile(x+(tx*mapTileWidth), y+(ty*mapTileHeight)-tileOffsetY, sheetX, sheetY);
 				}
 			}
 			
 			if (lineByLine) {
 				if (set != null) {
-					set.tiles.endUse();
 					set = null;
 				}
 				map.renderedLine(ty, ty+sy, index);
 			}
-			
-			if (set != null) {
-				set.tiles.endUse();
-			}
+
 		}
 	}
 	

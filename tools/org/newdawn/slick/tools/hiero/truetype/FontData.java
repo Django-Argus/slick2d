@@ -283,6 +283,7 @@ public class FontData {
 		try {
 			InputStream in = new FileInputStream(file);
 		
+			@SuppressWarnings("resource")
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 			ByteArrayOutputStream temp = new ByteArrayOutputStream();
 			PrintStream pout = new PrintStream(temp);

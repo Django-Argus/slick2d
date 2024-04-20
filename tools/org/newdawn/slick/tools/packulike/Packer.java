@@ -150,6 +150,7 @@ public class Packer extends JFrame {
 		list.addListSelectionListener(new ListSelectionListener() {
 
 			public void valueChanged(ListSelectionEvent e) {
+				@SuppressWarnings("deprecation")
 				Object[] values = list.getSelectedValues();
 				ArrayList sprites = new ArrayList();
 				for (int i=0;i<values.length;i++) {
@@ -196,6 +197,7 @@ public class Packer extends JFrame {
 		panel.add(remove);
 		remove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				@SuppressWarnings("deprecation")
 				Object[] selected = list.getSelectedValues();
 				for (int i=0;i<selected.length;i++) {
 					sprites.removeElement(selected[i]);

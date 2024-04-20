@@ -13,11 +13,13 @@ public interface ConfigurableEffect extends Effect {
 	/**
 	 * Returns the list of {@link Value}s for this effect. This list is not typically backed by the effect, so changes to the
 	 * values will not take affect until {@link #setValues(List)} is called.
+	 * @return List
 	 */
 	public List getValues();
 
 	/**
 	 * Sets the list of {@link Value}s for this effect.
+	 * @param values 
 	 */
 	public void setValues(List values);
 
@@ -27,21 +29,25 @@ public interface ConfigurableEffect extends Effect {
 	static public interface Value {
 		/**
 		 * Returns the name of the value.
+		 * @return String
 		 */
 		public String getName ();
 
 		/**
 		 * Sets the string representation of the value.
+		 * @param value 
 		 */
 		public void setString (String value);
 
 		/**
 		 * Gets the string representation of the value.
+		 * @return String
 		 */
 		public String getString ();
 
 		/**
 		 * Gets the object representation of the value.
+		 * @return Object
 		 */
 		public Object getObject ();
 

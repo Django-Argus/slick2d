@@ -308,6 +308,7 @@ public class OggDecoder {
 //		ogg.channels = vi.channels;
 //		ogg.rate = vi.rate;
 
+		@SuppressWarnings("resource")
 		OggInputStream oggInput = new OggInputStream(input);
 		
 		boolean done = false;

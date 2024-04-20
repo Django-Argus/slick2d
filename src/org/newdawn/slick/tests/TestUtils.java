@@ -101,6 +101,7 @@ public class TestUtils {
 	/**
 	 * Initialise resources
 	 */
+	@SuppressWarnings("deprecation")
 	public void init() {
 		// turn off all but errors
 		Log.setVerbose(false);
