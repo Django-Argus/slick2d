@@ -165,7 +165,6 @@ public class TileSet {
 				
 				props.put(new Integer(id), tileProps);
 			}
-			System.out.println(animatedTiles);
 		}
 		
 	}
