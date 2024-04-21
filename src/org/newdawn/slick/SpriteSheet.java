@@ -68,7 +68,6 @@ public class SpriteSheet extends Image {
 	 */
 	public SpriteSheet(Image image,int tw,int th,int spacing,int margin) {
 		super(image);
-		
 		this.target = image;
 		this.tw = tw;
 		this.th = th;
@@ -181,6 +180,7 @@ public class SpriteSheet extends Image {
 		}
 		
 		subImages = new Image[tilesAcross][tilesDown];
+
 		for (int x=0;x<tilesAcross;x++) {
 			for (int y=0;y<tilesDown;y++) {
 				subImages[x][y] = getSprite(x,y);
@@ -225,7 +225,7 @@ public class SpriteSheet extends Image {
 		if ((y < 0) || (y >= subImages[0].length)) {
 			throw new RuntimeException("SubImage out of sheet bounds: "+x+","+y);
 		}
-
+		
 		return target.getSubImage(x*(tw+spacing) + margin, y*(th+spacing) + margin,tw,th); 
 	}
 	

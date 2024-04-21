@@ -243,8 +243,7 @@ public class TileSet {
 		}
 
 		Animation anim = animatedTiles.get(new Integer(id));
-		anim.start();
-		anim.draw(x, y);
+		anim.draw(x, y, tileWidth, tileHeight);
 	}
 	
 	/**
